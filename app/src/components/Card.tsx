@@ -1,21 +1,21 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-regular-svg-icons/faTrashCan'
 
-const Card = () => {
+const Card = (props: {firstname:string, lastname:string, phoneNumber: number}) => {
   return (
     <div style={{width:'400px', margin:'20px', padding:'10px', borderRadius:'20px'}} className='bg-zinc-100'>
         <div className='flex justify-between items-center'>
 
             <div className='flex'>
                 <div className='me-3'>      
-                    <img src="https://avatar.iran.liara.run/username?username=Saul+Suazo]" alt="placeholder" style={{width:'70px', borderRadius:'40px'}}/>
+                    <img src={`https://avatar.iran.liara.run/username?username=${props.firstname}+${props.lastname}]`} alt="placeholder" style={{width:'70px', borderRadius:'40px'}}/>
                 </div>
                 <div className='mt-2'>
-                    <h1 className='font-bold'>Name</h1>
+                    <h1 className='font-bold'>{`${props.firstname} ${props.lastname}`}</h1>
                 <div>
                     
                 </div>
-                    <p>Card Description</p>
+                    <p>{props.phoneNumber}</p>
                 </div>
             </div>
             <div>
