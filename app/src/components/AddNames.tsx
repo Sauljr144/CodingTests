@@ -3,26 +3,47 @@ import { getData, postData } from '../services/DataService';
 import { CardData } from '../services/card-service';
 
 const AddNames = () => {
+  useEffect(() => {
+    getContacts();
+  }, []);
   const [contacts, setContacts] = useState<CardData[]>([])
   const [fname, setFname] = useState('')
   const [lname, setLname] = useState('')
   const [phone, setPhone] = useState(0)
+  const [email, setEmail] = useState("")
+  const [address, setAddress] = useState("")
+
+  useEffect(() => {
+    getContacts();
+  }, []);
+
+  const getContacts = async () => {
+    let data = await getData();
+    setContacts(data);
+    console.log(data);
+  }
+
 
   const handleSubmit =(e: FormEvent) => {
     e.preventDefault();
     addContact();
+    getContacts();
   }
 
   const fnameRef = useRef<HTMLInputElement>(null);
   const lnameRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const addressRef = useRef<HTMLInputElement>(null);
 
   const addContact = async () => {
     let data = {
-      id: 0,
+
       fname: fname,
       lname: lname,
-      phone: phone
+      phone: phone,
+      email: email,
+      address: address
     }
     console.log(data);
 
@@ -49,6 +70,16 @@ const AddNames = () => {
        <label className="block">
             <span className="block text-sm font-medium text-slate-700 text-base mb-3">Phone Number</span>
             <input type="number" className="mb-3 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Add Phone Number" ref={phoneRef}
+            />
+        </label>
+       <label className="block">
+            <span className="block text-sm font-medium text-slate-700 text-base mb-3">Email</span>
+            <input type="number" className="mb-3 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Add Email" ref={emailRef}
+            />
+        </label>
+       <label className="block">
+            <span className="block text-sm font-medium text-slate-700 text-base mb-3">Address</span>
+            <input type="number" className="mb-3 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Add Address" ref={addressRef}
             />
         </label>
         <button className='rounded-full bg-indigo-500 text-indigo-50 font-semibold w-24 py-2 ' type='submit'

@@ -31,7 +31,7 @@ const Contact = () => {
     <div className='flex justify-center'>
       <div>
         {contacts.map((contact:CardData) => {
-          return <Card key={contact.id} firstname={contact.fname} lastname={contact.lname} phoneNumber={contact.phone}/>
+          return <Card key={contact.fname} firstname={contact.fname} lastname={contact.lname} phoneNumber={contact.phone}/>
         })}
       </div>
       <div>
